@@ -24,7 +24,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  flutterformpackage: <latest_version>
+  flutterformpackage: ^0.0.1
 ```
 
 # License
