@@ -1,31 +1,26 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+# Music Player
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+The easy way to develop form application in Flutter.
 
-This library is useful for those who want to make form application quickly with animation effects <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever.
+<img src="https://github.com/salkuadrat/music/raw/master/screenshot.png" alt="universe" width="250">
 
-## Features
+## Getting Started
 
-Both in android and iOS
+Add dependency to your flutter project:
 
-## Getting started
+```
+$ flutter pub add music
+```
 
-In the `pubspec.yaml` of your flutter project, add the following dependency:
+or
 
 ```yaml
 dependencies:
-  ...
-  flutterformpackage: ^0.0.1
+  music: ^1.0.3
 ```
+
+Then run `flutter pub get`.
 
 # License
 
