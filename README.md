@@ -82,10 +82,6 @@ pageForm(
     );
 ```
 
-## Example
-
-Learn more from example project [here](example).
-
 # License
 
     Copyright 2021 Muhammad Uzair
