@@ -3,7 +3,7 @@
 
 The easy way to develop form application in Flutter.
 
-<img src="https://github.com/uzairiqbal91/FlutterPageForm/blob/main/asset/file.gif" width="500" height="800" />
+<img src="https://github.com/uzairiqbal91/FlutterPageForm/blob/main/asset/file.gif" width="400" height="750" />
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ or
 
 ```yaml
 dependencies:
-  flutterformpackage: ^0.0.4
+  flutterformpackage: ^0.0.5
 ```
 
 Then run `flutter pub get`.
