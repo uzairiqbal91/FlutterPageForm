@@ -3,7 +3,7 @@
 
 The easy way to develop form application in Flutter.
 
-<img src="https://github.com/uzairiqbal91/FlutterPageForm/blob/main/asset/file.gif" width="150" height="150" />
+<img src="https://github.com/uzairiqbal91/FlutterPageForm/blob/main/asset/file.gif" />
 
 ## Getting Started
 
