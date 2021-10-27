@@ -1,26 +1,90 @@
 
-# Music Player
+# Flutter Form
 
 The easy way to develop form application in Flutter.
 
-<img src="https://github.com/salkuadrat/music/raw/master/screenshot.png" alt="universe" width="250">
+<img src="https://github.com/uzairiqbal91/FlutterPageForm/blob/main/asset/file.gif" width="150" height="150" />
 
 ## Getting Started
 
 Add dependency to your flutter project:
 
 ```
-$ flutter pub add music
+$ flutter pub add flutterformpackage
 ```
 
 or
 
 ```yaml
 dependencies:
-  music: ^1.0.3
+  flutterformpackage: ^0.0.1
 ```
 
 Then run `flutter pub get`.
+
+
+## Usage
+
+```dart
+import 'package:flutterformpackage/flutterformpackage.dart';
+```
+
+Call the widget and put questions in json form and make sure json is valid , it will return finish call back when finish button click , also it will return answer model of each page .
+
+```dart
+pageForm(
+      inputJson: {
+        "data": [
+          {
+            "questions": [
+              {
+                "question": "what are your sleeping preferences?",
+                "options": [
+                  {"option": "Morning"},
+                  {"option": "Night"},
+                  {"option": "Neither, It depends on the day"},
+                  {"option": "Non, I work on off shift"}
+                ]
+              },
+              {
+                "question": "what are your sleeping preferenc?",
+                "options": [
+                  {"option": "Morning"},
+                  {"option": "Night"},
+                  {"option": "Neither, It depends on the day"},
+                  {"option": "Non, I work on off shift"}
+                ]
+              },
+              {
+                "question": "what are your sleeping prefer?",
+                "options": [
+                  {"option": "Morning"},
+                  {"option": "Night"},
+                  {"option": "Neither, It depends on the day"},
+                  {"option": "Non, I work on off shift"}
+                ]
+              }
+            ]
+          },
+        ]
+      },
+      isFinishClick: () {
+        print("finish callback");
+      },
+      answerModelFunction: (pageAnswers) {
+        List<AnswerModel> answerModel = pageAnswers as List<AnswerModel>;
+
+        answerModel.asMap().forEach((key, value) {
+          print("index is " + value.selectedIndex.toString());
+          print("value is " + value.buttonText);
+        });
+      },
+    );
+```
+
+## Example
+
+Learn more from example project [here](example).
 
 # License
 
