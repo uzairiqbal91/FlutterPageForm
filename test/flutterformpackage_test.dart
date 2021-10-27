@@ -23,30 +23,59 @@ class _PageFormState extends State<PageForm> {
           {
             "questions": [
               {
-                "question": "what are your sleeping preferences?",
+                "question": "what is your gender ?",
                 "options": [
-                  {"option": "Morning"},
-                  {"option": "Night"},
-                  {"option": "Neither, It depends on the day"},
-                  {"option": "Non, I work on off shift"}
+                  {"option": "Male"},
+                  {"option": "Female"}
                 ]
               },
               {
-                "question": "what are your sleeping preferenc?",
+                "question": "Entomology is the science that studies?",
                 "options": [
-                  {"option": "Morning"},
-                  {"option": "Night"},
-                  {"option": "Neither, It depends on the day"},
-                  {"option": "Non, I work on off shift"}
+                  {"option": "Behavior of human beings"},
+                  {"option": "Insects"},
+                  {"option": "The origin and history of technical and scientific terms"},
+                  {"option": "The formation of rocks"}
                 ]
               },
               {
-                "question": "what are your sleeping prefer?",
+                "question": "Eritrea, which became the 182nd member of the UN in 1993, is in the continent of?",
                 "options": [
-                  {"option": "Morning"},
-                  {"option": "Night"},
-                  {"option": "Neither, It depends on the day"},
-                  {"option": "Non, I work on off shift"}
+                  {"option": "Asia"},
+                  {"option": "Africa"},
+                  {"option": "Europe"},
+                  {"option": "Australia"}
+                ]
+              }
+            ]
+          },
+          {
+            "questions": [
+              {
+                "question": "Garampani sanctuary is located at ?",
+                "options": [
+                  {"option": "Junagarh, Gujarat"},
+                  {"option": "Diphu, Assam"},
+                  {"option": "Gangtok, Sikkim"},
+
+                ]
+              },
+              {
+                "question": "For which of the following disciplines is Nobel Prize awarded ?",
+                "options": [
+                  {"option": "Physics and Chemistry"},
+                  {"option": "Physiology or Medicine"},
+                  {"option": "Literature, Peace and Economics"},
+                  {"option": "All of the above"}
+                ]
+              },
+              {
+                "question": "Hitler party which came into power in 1933 is known as ?",
+                "options": [
+                  {"option": "Labour Party"},
+                  {"option": "Nazi Party"},
+                  {"option": "Ku-Klux-Klan"},
+                  {"option": "Democratic Party"}
                 ]
               }
             ]
