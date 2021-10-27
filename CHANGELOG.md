@@ -1,3 +1,8 @@
 ## 0.0.1
 
-* TODO:  json uploaded , button and text color added.
+Initial code uploaded .
+
+
+## 0.0.2
+
+Json along with readme.me file changed
