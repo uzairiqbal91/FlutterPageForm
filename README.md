@@ -17,7 +17,7 @@ or
 
 ```yaml
 dependencies:
-  flutterformpackage: ^0.0.1
+  flutterformpackage: ^0.0.2
 ```
 
 Then run `flutter pub get`.
