@@ -36,7 +36,7 @@ class pageForm extends StatefulWidget {
     this.buttonTextColor = Colors.black,
     this.bottomBackgroundColor = Colors.white,
     this.buttonTextFontSize = 15.0 ,
-    this.questionTitleFontSize = 20.0 ,
+    this.questionTitleFontSize = 17.0 ,
     this.questionTextFontSize = 15.0}) : super(key: key);
 
   @override
