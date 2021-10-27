@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+
 import 'dart:developer';
 
 
@@ -14,8 +15,29 @@ class pageForm extends StatefulWidget {
 
   Map<String, dynamic> inputJson;
   Function isFinishClick;
+  Color textColor;
+
+  Color backgroundColor;
+
+  Color bottomBackgroundColor;
+  double questionTitleFontSize;
+  double questionTextFontSize;
+  double buttonTextFontSize;
+  Color selectionColor;
+  Color buttonTextColor;
+
   AnswerModelFunction answerModelFunction;
-   pageForm({Key? key , required this.inputJson , required this.isFinishClick , required this.answerModelFunction}) : super(key: key);
+  pageForm({Key? key , required this.inputJson ,
+    required this.isFinishClick ,
+    required this.answerModelFunction ,
+    this.selectionColor = Colors.blueGrey ,
+    this.backgroundColor = Colors.white ,
+    this.textColor = Colors.black,
+    this.buttonTextColor = Colors.black,
+    this.bottomBackgroundColor = Colors.white,
+    this.buttonTextFontSize = 15.0 ,
+    this.questionTitleFontSize = 20.0 ,
+    this.questionTextFontSize = 15.0}) : super(key: key);
 
   @override
   _pageFormState createState() => _pageFormState();
@@ -40,7 +62,7 @@ class _pageFormState extends State<pageForm> {
 
       value.data.asMap().forEach((key, val) {
         setState(() {
-          pages.add(FormView(index: key, dataList: value.data));
+          pages.add(FormView(index: key, dataList: value.data , questionTextFontSize: widget.questionTextFontSize ,buttonTextColor: widget.buttonTextColor,selectionColor: widget.selectionColor,questionTitleFontSize: widget.questionTitleFontSize,));
         });
       });
 
@@ -56,11 +78,21 @@ class _pageFormState extends State<pageForm> {
         ? CircularProgressIndicator()
         : pages.length == 0 ? Center(child: Text("Json is incorrect")) : PageViewBuilder(
 
-        pageController: this._pageController,
-        pages: this.pages,
-        currentPage: this._currentPage,
-        isFinishClick: widget.isFinishClick,
-        answerModelFunction: widget.answerModelFunction
+      pageController: this._pageController,
+      pages: this.pages,
+      currentPage: this._currentPage,
+      isFinishClick: widget.isFinishClick,
+      answerModelFunction: widget.answerModelFunction,
+      buttonTextColor: widget.buttonTextColor,
+      backgroundColor: widget.backgroundColor,
+      selectionColor: widget.selectionColor,
+      textColor: widget.textColor,
+      bottomBackgroundColor: widget.bottomBackgroundColor,
+      buttonTextFontSize: widget.buttonTextFontSize,
+      questionTitleFontSize: widget.questionTitleFontSize,
+      questionTextFontSize: widget.questionTextFontSize,
+
+
     );
   }
 }
@@ -72,14 +104,31 @@ class PageViewBuilder extends StatefulWidget {
   String routeName;
   Function isFinishClick;
   AnswerModelFunction answerModelFunction;
+  Color textColor;
+  Color selectionColor;
+  Color backgroundColor;
+  Color buttonTextColor;
+  Color bottomBackgroundColor;
+  double questionTitleFontSize;
+  double questionTextFontSize;
+  double buttonTextFontSize;
 
   PageViewBuilder(
       {required this.pages,
-      this.currentPage = 0,
-      required this.pageController,
-      this.routeName = "",
-      required this.isFinishClick,
-      required this.answerModelFunction
+        this.currentPage = 0,
+        required this.pageController,
+        this.routeName = "",
+        required this.isFinishClick,
+        required this.answerModelFunction,
+        required this.textColor,
+        required this.backgroundColor,
+        required this.selectionColor,
+        required this.buttonTextColor,
+        required this.bottomBackgroundColor,
+        required this.questionTitleFontSize,
+        required this.questionTextFontSize,
+        required this.buttonTextFontSize
+
       });
 
   @override
@@ -120,12 +169,16 @@ class _PageViewBuilderState extends State<PageViewBuilder> {
         Expanded(
           flex: 1,
           child: FormBottomView(
-              pageController: widget.pageController,
-              pages: widget.pages,
-              currentPage: widget.currentPage,
-              routeName: widget.routeName,
-              isFinishClick: widget.isFinishClick,
+            pageController: widget.pageController,
+            pages: widget.pages,
+            currentPage: widget.currentPage,
+            routeName: widget.routeName,
+            isFinishClick: widget.isFinishClick,
             answerModelFunction: widget.answerModelFunction,
+            buttonTextColor: widget.buttonTextColor,
+            bottomBackgroundColor: widget.bottomBackgroundColor,
+            buttonTextFontSize: widget.buttonTextFontSize,
+
 
           ),
         )
@@ -144,15 +197,21 @@ class FormBottomView extends StatefulWidget {
   String routeName;
   Function isFinishClick;
   AnswerModelFunction answerModelFunction;
+  Color buttonTextColor;
+  Color bottomBackgroundColor;
+  double buttonTextFontSize;
 
 
   FormBottomView(
       {required this.pages,
-      this.currentPage = 0,
-      required this.pageController,
-      this.routeName = "",
-      required this.isFinishClick,
-        required this.answerModelFunction
+        this.currentPage = 0,
+        required this.pageController,
+        this.routeName = "",
+        required this.isFinishClick,
+        required this.answerModelFunction,
+        required this.buttonTextColor,
+        required this.bottomBackgroundColor,
+        required this.buttonTextFontSize
       });
 
   @override
@@ -177,10 +236,11 @@ class _FormBottomViewState extends State<FormBottomView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.bottomBackgroundColor,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Container(
+
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -193,9 +253,9 @@ class _FormBottomViewState extends State<FormBottomView> {
 
                       widget.currentPage != 0
                           ? widget.pageController.previousPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            )
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      )
                           : print("data");
 
                       widget.currentPage = widget.currentPage != 0
@@ -205,11 +265,16 @@ class _FormBottomViewState extends State<FormBottomView> {
                       changeProgressVal();
                     },
                     child: Container(
+
+                      color: widget.bottomBackgroundColor,
                       child: Align(
+
                           alignment: Alignment.centerLeft,
                           child: PagerTextView(
                             title: widget.currentPage != 0 ? "Previous" : '',
                             currentPage: widget.currentPage,
+                            buttonTextColor: widget.buttonTextColor,
+                            buttonTextFontSize: widget.buttonTextFontSize,
                           )
 
 //                                 Text(
@@ -220,7 +285,7 @@ class _FormBottomViewState extends State<FormBottomView> {
 //                                     fontSize: 18.0,
 //                                   ),
 //                                 ),
-                          ),
+                      ),
                     ),
                   ),
                 ),
@@ -302,9 +367,9 @@ class _FormBottomViewState extends State<FormBottomView> {
 
                       widget.currentPage != widget.pages.length - 1
                           ? widget.pageController.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            )
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      )
                           : widget.isFinishClick();
                       // Navigator.pushNamedAndRemoveUntil(context, widget.routeName, (route) => false);
 
@@ -313,9 +378,12 @@ class _FormBottomViewState extends State<FormBottomView> {
                       changeProgressVal();
                     },
                     child: Container(
+                      color: widget.bottomBackgroundColor,
                       child: Align(
                           alignment: Alignment.centerRight,
                           child: PagerTextView(
+                            buttonTextColor: widget.buttonTextColor,
+                            buttonTextFontSize: widget.buttonTextFontSize,
                             title: widget.currentPage != widget.pages.length - 1
 //
                                 ? 'Next'
@@ -345,9 +413,11 @@ class PagerTextView extends StatelessWidget {
   String title;
   int currentPage;
   bool isHome;
+  Color buttonTextColor;
+  double buttonTextFontSize;
 
   PagerTextView(
-      {required this.title, this.currentPage = 0, this.isHome = false});
+      {required this.title, this.currentPage = 0, this.isHome = false,this.buttonTextColor = Colors.black,required this.buttonTextFontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -357,9 +427,9 @@ class PagerTextView extends StatelessWidget {
       textAlign: currentPage != 0 ? TextAlign.left : TextAlign.right,
       style: TextStyle(
         // color:  this.isHome ? Provider.of<ThemeChange>(context).isDark ? AppColors.GRAY : AppColors.SECONDARY_COLORTWO :  title!=Globals.PREVIOUS1  ?  Provider.of<ThemeChange>(context).isDark ? AppColors.GRAY : AppColors.SECONDARY_COLORTWO:AppColors.GRAY,
-        color: Colors.black,
+        color: this.buttonTextColor,
         // fontFamily: AppFonts.POPPINS_SEMIBOLD,
-        fontSize: 12.0,
+        fontSize: this.buttonTextFontSize,
       ),
     );
   }
@@ -368,9 +438,13 @@ class PagerTextView extends StatelessWidget {
 class FormView extends StatefulWidget  {
   int index = 0;
   List<Data> dataList = [];
-  Map questionsMap = new Map<String, List<RadioModel>>();
 
-  FormView({required this.index, required this.dataList});
+  Map questionsMap = new Map<String, List<RadioModel>>();
+  double questionTextFontSize;
+  Color selectionColor;
+  Color buttonTextColor;
+  double questionTitleFontSize;
+  FormView({required this.index, required this.dataList , required this.questionTextFontSize , required this.selectionColor , required this.buttonTextColor , required this.questionTitleFontSize});
 
   @override
   _FormViewState createState() => _FormViewState();
@@ -411,9 +485,10 @@ class _FormViewState extends State<FormView> with AutomaticKeepAliveClientMixin 
     return ListView(
       children: widget.questionsMap.entries
           .map((val) => FormContainer(
-                children: buildSelectItems(val.value),
-                title: val.key,
-              ))
+        children: buildSelectItems(val.value),
+        title: val.key,
+        questionTitleFontSize: widget.questionTitleFontSize,
+      ))
           .toList(),
     );
   }
@@ -441,7 +516,15 @@ class _FormViewState extends State<FormView> with AutomaticKeepAliveClientMixin 
       items.add(SelectionButton(
         text: item.buttonText,
         isSelected: item.isSelected,
-        onPressed: () => {_select(i, raioModel)},
+        onPressed: () => {_select(i, raioModel),
+        },
+        selectionColor: widget.selectionColor,
+        buttonTextColor: widget.buttonTextColor,
+        questionTextFontSize: widget.questionTextFontSize,
+
+        // selectionColor: widget.si,
+
+
       ));
     }
     return items;
@@ -461,10 +544,17 @@ class SelectionButton extends StatefulWidget {
     required this.text,
     required this.isSelected,
     required this.onPressed,
+    required this.questionTextFontSize,
+    required this.selectionColor,
+    required this.buttonTextColor
   });
   final String text;
   final bool isSelected;
   final VoidCallback onPressed;
+  final double questionTextFontSize;
+  final Color selectionColor;
+  final Color buttonTextColor;
+
 
   @override
   _SelectionButtonState createState() => _SelectionButtonState();
@@ -489,13 +579,13 @@ class _SelectionButtonState extends State<SelectionButton> {
         // min sizes for Material buttons
 
         decoration: BoxDecoration(
-            color: widget.isSelected ? Colors.red : Colors.white,
+            color: widget.isSelected ? widget.selectionColor : Colors.white,
             border: Border.all(
                 width: 1, //
                 color: widget.isSelected
-                    ? Colors.red
+                    ? widget.selectionColor
                     : Colors.grey) //               <--- border width here
-            ),
+        ),
 
         child: FlatButton(
           child: Align(
@@ -503,6 +593,9 @@ class _SelectionButtonState extends State<SelectionButton> {
             child: Text(
               this.widget.text,
               textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: widget.questionTextFontSize
+              ),
             ),
           ),
           onPressed: widget.onPressed,
@@ -517,9 +610,10 @@ class FormContainer extends StatelessWidget {
   List<Widget> children;
   String title;
   bool isText;
+  double questionTitleFontSize;
 
   FormContainer(
-      {Key? key, required this.children, this.title = "", this.isText = false});
+      {Key? key, required this.children, this.title = "", this.isText = false , required this.questionTitleFontSize });
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -529,24 +623,25 @@ class FormContainer extends StatelessWidget {
         // height: height,
         // constraints:  BoxConstraints.expand(height: this.height),
         decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(AppTextSizes.APP_FORM_CONTAINER_RADIUS),
+          // borderRadius: BorderRadius.circular(AppTextSizes.APP_FORM_CONTAINER_RADIUS),
             borderRadius: BorderRadius.circular(10),
             color: Colors.white),
         child: Padding(
-            // padding: EdgeInsets.only(bottom: AppTextSizes.SCREEN_PADDING),
+          // padding: EdgeInsets.only(bottom: AppTextSizes.SCREEN_PADDING),
             padding: EdgeInsets.only(bottom: 10),
             child: Column(
               children: [
                 this.title != ""
                     ? Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                        child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              this.title,
-                              // style: AppStyles.labelTextStyleSemiBold(fontSize: 14,color: Colors.black
-                              // )
-                            )))
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          this.title,
+                          style: TextStyle(fontSize: this.questionTitleFontSize),
+                          // style: AppStyles.labelTextStyleSemiBold(fontSize: 14,color: Colors.black
+                          // )
+                        )))
                     : Text(""),
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
