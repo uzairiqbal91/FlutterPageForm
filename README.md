@@ -26,7 +26,8 @@ Then run `flutter pub get`.
 ## Usage
 
 ```dart
-import 'package:flutterformpackage/flutterformpackage.dart';
+import 'package:flutterformpackage/AnswerModel.dart';
+import 'package:flutterformpackage/page_form.dart';
 ```
 
 Call the widget and put questions in json form and make sure json is valid , it will return finish call back when finish button click , also it will return answer model of each page .
